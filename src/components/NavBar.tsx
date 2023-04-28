@@ -1,10 +1,23 @@
-import { HStack, Image, Text } from "@chakra-ui/react";
+import {
+  Box,
+  FormControl,
+  FormLabel,
+  Grid,
+  GridItem,
+  HStack,
+  Image,
+  Switch,
+  Text,
+} from "@chakra-ui/react";
 import logo from "../assets/logo.webp";
+import { useState } from "react";
+import { ThemeModeSwitch } from "./ThemeModeSwitch";
+
 export const NavBar = () => {
   return (
-    <HStack>
+    <HStack justifyContent={"space-between"}>
       <Image src={logo} boxSize="60px"></Image>
-      <Text>NavBar</Text>
+      <ThemeModeSwitch />
     </HStack>
   );
 };
