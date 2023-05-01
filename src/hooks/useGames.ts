@@ -13,18 +13,17 @@ const useGames = () => {
     request
       .then((res) => {
         setGames(res.data.results);
+        setLoading(false);
       })
       .catch((err) => {
         if (err instanceof CanceledError) return;
         setErrors(err.message);
       })
-      .finally(() => {
-        setLoading(false);
-      });
+      .finally(() => {});
     return cancel;
   }, []);
 
-  return { games, error, isLoading, setGames, setLoading, setErrors };
+  return { games, error, isLoading };
 };
 
 export default useGames;
