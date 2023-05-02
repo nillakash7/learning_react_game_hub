@@ -3,6 +3,7 @@ import useGames from "../hooks/useGames";
 import { CustomAlert } from "./CustomAlert";
 import { GameCard } from "./GameCard";
 import { GameCardShadow } from "./GameCardShadow";
+import { GameCardContainer } from "./GameCardContainer";
 
 export const GameList = () => {
   const { games, error, isLoading } = useGames();
@@ -19,10 +20,14 @@ export const GameList = () => {
       >
         {isLoading &&
           shadowGames.map((sgItem) => (
-            <GameCardShadow key={sgItem}></GameCardShadow>
+            <GameCardContainer>
+              <GameCardShadow key={sgItem}></GameCardShadow>
+            </GameCardContainer>
           ))}
         {games.map((gItem) => (
-          <GameCard game={gItem}></GameCard>
+          <GameCardContainer>
+            <GameCard game={gItem}></GameCard>
+          </GameCardContainer>
         ))}
       </SimpleGrid>
     </div>
