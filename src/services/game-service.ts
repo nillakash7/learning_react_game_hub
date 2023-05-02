@@ -14,11 +14,4 @@ export interface Game {
   metacritic: number;
 }
 
-export interface FetchGameResponse {
-  count: number;
-  next: string;
-  previous: string;
-  results: Game[];
-}
-
 export default create("/games");
