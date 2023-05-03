@@ -1,4 +1,3 @@
-import useGenres from "../hooks/useGenres";
 import {
   Accordion,
   AccordionButton,
@@ -6,17 +5,18 @@ import {
   AccordionItem,
   Box,
 } from "@chakra-ui/react";
+import useGenres from "../hooks/useGenres";
 
 export const GenresList = () => {
-  const { genres, error, isLoading } = useGenres();
+  const { data, error, isLoading } = useGenres();
   return (
     <Accordion>
-      {genres.map((genre) => (
+      {data.map((item) => (
         <AccordionItem>
           <h2>
             <AccordionButton>
               <Box as="span" flex="1" textAlign="left">
-                {genre.name}
+                {item.name}
               </Box>
               <AccordionIcon />
             </AccordionButton>

@@ -1,29 +1,12 @@
-import { useEffect, useState } from "react";
-import { CanceledError, APIResponse } from "../services/api-client";
-import genresService, { Genres } from "../services/genres-service";
+import useData from "./useData";
 
-const useGenres = () => {
-  const [genres, setGenres] = useState<Genres[]>([]);
-  const [error, setErrors] = useState("");
-  const [isLoading, setLoading] = useState(false);
+export interface Genres {
+  id: number;
+  name: string;
+  slug: string;
+  games_count: number;
+}
 
-  useEffect(() => {
-    setLoading(true);
-    const { request, cancel } = genresService.getAll<APIResponse<Genres>>();
-    request
-      .then((res) => {
-        setGenres(res.data.results);
-        setLoading(false);
-      })
-      .catch((err) => {
-        if (err instanceof CanceledError) return;
-        setErrors(err.message);
-      })
-      .finally(() => {});
-    return cancel;
-  }, []);
-
-  return { genres, error, isLoading };
-};
+const useGenres = () => useData<Genres>("genres");
 
 export default useGenres;
