@@ -1,3 +1,4 @@
+import { SearchParameters } from "../components/GameList";
 import apiClient, { CanceledError } from "./api-client";
 
 class HttpService {
@@ -7,7 +8,7 @@ class HttpService {
     this.endpoint = endpoint;
   }
 
-  getAll<T>() {
+  getAll<T>(searchBy?: SearchParameters) {
     const contoller = new AbortController();
     const request = apiClient.get<T>(this.endpoint, {
       signal: contoller.signal,

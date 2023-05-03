@@ -1,3 +1,4 @@
+import { SearchParameters } from "../components/GameList";
 import useData from "./useData";
 export interface GamePlatform {
   id: number;
@@ -13,6 +14,6 @@ export interface Game {
   metacritic: number;
 }
 
-const useGames = () => useData<Game>("games");
+const useGames = (searchBy: SearchParameters) => useData<Game>("games");
 
 export default useGames;
