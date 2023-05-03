@@ -34,7 +34,7 @@ const App = () => {
         </GridItem>
       </Show>
       <GridItem area="main">
-        <HStack>
+        <HStack spacing={3}>
           <PlatformList
             selectedPlatform={searchBy?.platform?.name}
             onSelectPlatform={(selectedPlatform) => {
