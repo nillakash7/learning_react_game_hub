@@ -6,10 +6,12 @@ import { GameCardContainer } from "./GameCardContainer";
 import useGames from "../hooks/useGames";
 import { Genres } from "../hooks/useGenres";
 import { Platform } from "../hooks/usePlatforms";
+import { SortByItem } from "./GameSorting";
 
 export interface SearchParameters {
   genres?: Genres;
   platform?: Platform;
+  sortyBy?: SortByItem;
 }
 
 interface Props {
