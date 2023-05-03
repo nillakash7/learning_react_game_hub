@@ -1,8 +1,10 @@
-import { Grid, GridItem, Show } from "@chakra-ui/react";
+import { Grid, GridItem, Show, VStack } from "@chakra-ui/react";
 import { NavBar } from "./components/NavBar";
 import { GameList, SearchParameters } from "./components/GameList";
 import { GenresList } from "./components/GenresList";
 import { useState } from "react";
+import { PlatformIconList } from "./components/PlatformIconList";
+import { PlatformList } from "./components/PlatformList";
 const App = () => {
   const [searchBy, setSearchBy] = useState<SearchParameters | null>(null);
 
@@ -14,7 +16,7 @@ const App = () => {
       }}
       templateColumns={{
         base: "1fr",
-        lg: "200px 1fr",
+        lg: "250px 1fr",
       }}
     >
       <GridItem area="nav">
@@ -31,6 +33,12 @@ const App = () => {
         </GridItem>
       </Show>
       <GridItem area="main">
+        <PlatformList
+          selectedPlatform={searchBy?.platform?.name}
+          onSelectPlatform={(selectedPlatform) => {
+            setSearchBy({ ...searchBy, platform: selectedPlatform });
+          }}
+        ></PlatformList>
         <GameList searchBy={searchBy} />
       </GridItem>
       <GridItem area="footer" bg="purple">

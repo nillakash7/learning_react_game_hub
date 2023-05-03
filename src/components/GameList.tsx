@@ -1,13 +1,15 @@
-import { SimpleGrid } from "@chakra-ui/react";
+import { Box, SimpleGrid } from "@chakra-ui/react";
 import { CustomAlert } from "./CustomAlert";
 import { GameCard } from "./GameCard";
 import { GameCardShadow } from "./GameCardShadow";
 import { GameCardContainer } from "./GameCardContainer";
 import useGames from "../hooks/useGames";
 import { Genres } from "../hooks/useGenres";
+import { Platform } from "../hooks/usePlatforms";
 
 export interface SearchParameters {
   genres?: Genres;
+  platform?: Platform;
 }
 
 interface Props {
@@ -15,16 +17,16 @@ interface Props {
 }
 
 export const GameList = ({ searchBy }: Props) => {
-  const { data, error, isLoading } = useGames(searchBy?.genres?.id);
+  const { data, error, isLoading } = useGames(searchBy);
   const shadowGames = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
   return (
-    <div>
+    <Box>
       {error && (
         <CustomAlert alertType="error" alertMessage={error}></CustomAlert>
       )}
       <SimpleGrid
         columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
-        padding="10px"
+        marginY={2}
         spacing={3}
       >
         {isLoading &&
@@ -39,6 +41,6 @@ export const GameList = ({ searchBy }: Props) => {
           </GameCardContainer>
         ))}
       </SimpleGrid>
-    </div>
+    </Box>
   );
 };
