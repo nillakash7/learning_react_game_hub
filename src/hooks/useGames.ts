@@ -23,7 +23,7 @@ const useGames = (searchBy?: SearchParameters | null) =>
         parent_platforms: searchBy?.platform?.id,
       },
     },
-    [searchBy?.genres?.id, searchBy?.platform?.id]
+    [searchBy]
   );
 
 export default useGames;
