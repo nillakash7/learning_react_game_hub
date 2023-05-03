@@ -1,9 +1,8 @@
-import { Grid, GridItem, HStack, Show, VStack } from "@chakra-ui/react";
+import { Box, Flex, Grid, GridItem, Show } from "@chakra-ui/react";
 import { NavBar } from "./components/NavBar";
 import { GameList, SearchParameters } from "./components/GameList";
 import { GenresList } from "./components/GenresList";
 import { useState } from "react";
-import { PlatformIconList } from "./components/PlatformIconList";
 import { PlatformList } from "./components/PlatformList";
 import { GameSorting } from "./components/GameSorting";
 const App = () => {
@@ -34,20 +33,22 @@ const App = () => {
         </GridItem>
       </Show>
       <GridItem area="main">
-        <HStack spacing={3}>
-          <PlatformList
-            selectedPlatform={searchBy?.platform?.name}
-            onSelectPlatform={(selectedPlatform) => {
-              setSearchBy({ ...searchBy, platform: selectedPlatform });
-            }}
-          ></PlatformList>
+        <Flex>
+          <Box paddingRight="10px">
+            <PlatformList
+              selectedPlatform={searchBy?.platform?.name}
+              onSelectPlatform={(selectedPlatform) => {
+                setSearchBy({ ...searchBy, platform: selectedPlatform });
+              }}
+            ></PlatformList>
+          </Box>
           <GameSorting
             selectedSortBy={searchBy?.sortyBy?.name}
             onSelectSortBy={(selectedSortBy) => {
               setSearchBy({ ...searchBy, sortyBy: selectedSortBy });
             }}
           ></GameSorting>
-        </HStack>
+        </Flex>
         <GameList searchBy={searchBy} />
       </GridItem>
       <GridItem area="footer" bg="purple">
