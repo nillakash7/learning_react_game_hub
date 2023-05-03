@@ -1,28 +1,31 @@
-import {
-  Accordion,
-  AccordionButton,
-  AccordionIcon,
-  AccordionItem,
-  Box,
-} from "@chakra-ui/react";
+import { Text, HStack, Image, List, ListItem } from "@chakra-ui/react";
 import useGenres from "../hooks/useGenres";
+import getCroppedImageUrl from "../services/image-url";
 
-export const GenresList = () => {
+interface Props {
+  onSelectGenres: (genresId: number) => void;
+}
+
+export const GenresList = ({ onSelectGenres }: Props) => {
   const { data, error, isLoading } = useGenres();
   return (
-    <Accordion>
+    <List>
       {data.map((item) => (
-        <AccordionItem>
-          <h2>
-            <AccordionButton>
-              <Box as="span" flex="1" textAlign="left">
-                {item.name}
-              </Box>
-              <AccordionIcon />
-            </AccordionButton>
-          </h2>
-        </AccordionItem>
+        <ListItem
+          key={item.id}
+          marginY={3}
+          onClick={() => onSelectGenres(item.id)}
+        >
+          <HStack>
+            <Image
+              boxSize="32px"
+              borderRadius="5px"
+              src={getCroppedImageUrl(item.image_background)}
+            ></Image>
+            <Text fontSize="lg">{item.name}</Text>
+          </HStack>
+        </ListItem>
       ))}
-    </Accordion>
+    </List>
   );
 };

@@ -5,8 +5,16 @@ import { GameCardShadow } from "./GameCardShadow";
 import { GameCardContainer } from "./GameCardContainer";
 import useGames from "../hooks/useGames";
 
-export const GameList = () => {
-  const { data, error, isLoading } = useGames();
+export interface SearchParameters {
+  genresId?: number;
+}
+
+interface Props {
+  searchBy: SearchParameters;
+}
+
+export const GameList = ({ searchBy }: Props) => {
+  const { data, error, isLoading } = useGames(searchBy);
   const shadowGames = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
   return (
     <div>
@@ -16,7 +24,7 @@ export const GameList = () => {
       <SimpleGrid
         columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
         padding="10px"
-        spacing={10}
+        spacing={3}
       >
         {isLoading &&
           shadowGames.map((sgItem) => (
