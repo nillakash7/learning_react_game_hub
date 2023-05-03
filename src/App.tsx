@@ -4,11 +4,8 @@ import { GameList, SearchParameters } from "./components/GameList";
 import { GenresList } from "./components/GenresList";
 import { useState } from "react";
 const App = () => {
-  const [searchBy, setSearchBy] = useState<SearchParameters>({});
+  const [searchBy, setSearchBy] = useState<SearchParameters | null>(null);
 
-  const handleSelectGenres = (pGenresId: number) => {
-    setSearchBy({ ...searchBy, genresId: pGenresId });
-  };
   return (
     <Grid
       templateAreas={{
@@ -25,7 +22,12 @@ const App = () => {
       </GridItem>
       <Show above="lg">
         <GridItem area="aside" marginX={3}>
-          <GenresList onSelectGenres={handleSelectGenres}></GenresList>
+          <GenresList
+            selectedGenres={searchBy?.genres?.id}
+            onSelectGenres={(pGenres) =>
+              setSearchBy({ ...searchBy, genres: pGenres })
+            }
+          ></GenresList>
         </GridItem>
       </Show>
       <GridItem area="main">

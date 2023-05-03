@@ -1,17 +1,20 @@
-import { SearchParameters } from "../components/GameList";
-import apiClient, { CanceledError } from "./api-client";
+import { AxiosRequestConfig } from "axios";
+import apiClient from "./api-client";
 
 class HttpService {
   endpoint: string;
+  requestData?: AxiosRequestConfig | null;
 
-  constructor(endpoint: string) {
+  constructor(endpoint: string, requestData?: AxiosRequestConfig | null) {
     this.endpoint = endpoint;
+    this.requestData = requestData;
   }
 
-  getAll<T>(searchBy?: SearchParameters) {
+  getAll<T>() {
     const contoller = new AbortController();
     const request = apiClient.get<T>(this.endpoint, {
       signal: contoller.signal,
+      ...this.requestData,
     });
 
     return {
@@ -23,6 +26,7 @@ class HttpService {
   }
 }
 
-const create = (endpoint: string) => new HttpService(endpoint);
+const create = (endpoint: string, requestData?: AxiosRequestConfig | null) =>
+  new HttpService(endpoint, requestData);
 
 export default create;
