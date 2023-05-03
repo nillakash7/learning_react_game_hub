@@ -1,12 +1,12 @@
-import { SimpleGrid, Text } from "@chakra-ui/react";
-import useGames from "../hooks/useGames";
+import { SimpleGrid } from "@chakra-ui/react";
 import { CustomAlert } from "./CustomAlert";
 import { GameCard } from "./GameCard";
 import { GameCardShadow } from "./GameCardShadow";
 import { GameCardContainer } from "./GameCardContainer";
+import useGames from "../hooks/useGames";
 
 export const GameList = () => {
-  const { games, error, isLoading } = useGames();
+  const { data, error, isLoading } = useGames();
   const shadowGames = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
   return (
     <div>
@@ -24,7 +24,7 @@ export const GameList = () => {
               <GameCardShadow key={sgItem}></GameCardShadow>
             </GameCardContainer>
           ))}
-        {games.map((gItem) => (
+        {data.map((gItem) => (
           <GameCardContainer>
             <GameCard game={gItem}></GameCard>
           </GameCardContainer>
