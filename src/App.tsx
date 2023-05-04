@@ -5,6 +5,7 @@ import { GenresList } from "./components/GenresList";
 import { useState } from "react";
 import { PlatformList } from "./components/PlatformList";
 import { GameSorting } from "./components/GameSorting";
+import { GameHeading } from "./components/GameHeading";
 const App = () => {
   const [searchBy, setSearchBy] = useState<SearchParameters | null>(null);
 
@@ -37,7 +38,11 @@ const App = () => {
         </GridItem>
       </Show>
       <GridItem area="main" margin="5px">
-        <Flex>
+        <GameHeading
+          platform={searchBy?.platform?.name}
+          genres={searchBy?.genres?.name}
+        ></GameHeading>
+        <Flex marginBottom="20px">
           <Box paddingRight="10px">
             <PlatformList
               selectedPlatform={searchBy?.platform?.name}
