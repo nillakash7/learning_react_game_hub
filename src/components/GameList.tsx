@@ -30,7 +30,7 @@ export const GameList = ({ searchBy }: Props) => {
       <SimpleGrid
         columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
         marginY={2}
-        spacing={3}
+        spacing={6}
       >
         {isLoading &&
           shadowGames.map((sgItem) => (
