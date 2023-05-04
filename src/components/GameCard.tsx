@@ -3,6 +3,7 @@ import { PlatformIconList } from "./PlatformIconList";
 import { GameCriticScore } from "./GameCriticScore";
 import getCroppedImageUrl from "../services/image-url";
 import { Game } from "../hooks/useGames";
+import { GameRating } from "./GameRating";
 
 interface GameCardProps {
   game: Game;
@@ -20,6 +21,7 @@ export const GameCard = ({ game }: GameCardProps) => {
           <GameCriticScore score={game.metacritic}></GameCriticScore>
         </HStack>
         <Heading fontSize="2xl">{game.name}</Heading>
+        <GameRating rating={game.rating_top}></GameRating>
       </CardBody>
     </Card>
   );
