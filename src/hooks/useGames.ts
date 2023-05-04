@@ -21,6 +21,7 @@ const useGames = (searchBy?: SearchParameters | null) =>
       params: {
         genres: searchBy?.genres?.id,
         parent_platforms: searchBy?.platform?.id,
+        search: searchBy?.keyword,
         ordering: searchBy?.sortyBy?.tag,
       },
     },

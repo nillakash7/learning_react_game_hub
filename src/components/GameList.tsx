@@ -12,6 +12,7 @@ export interface SearchParameters {
   genres?: Genres;
   platform?: Platform;
   sortyBy?: SortByItem;
+  keyword?: string;
 }
 
 interface Props {

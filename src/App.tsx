@@ -20,7 +20,11 @@ const App = () => {
       }}
     >
       <GridItem area="nav">
-        <NavBar></NavBar>
+        <NavBar
+          onInputKeyword={(pKeyword) =>
+            setSearchBy({ ...searchBy, keyword: pKeyword })
+          }
+        ></NavBar>
       </GridItem>
       <Show above="lg">
         <GridItem area="aside" marginX={3}>
@@ -32,7 +36,7 @@ const App = () => {
           ></GenresList>
         </GridItem>
       </Show>
-      <GridItem area="main">
+      <GridItem area="main" margin="5px">
         <Flex>
           <Box paddingRight="10px">
             <PlatformList

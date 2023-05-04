@@ -1,22 +1,16 @@
-import {
-  Box,
-  FormControl,
-  FormLabel,
-  Grid,
-  GridItem,
-  HStack,
-  Image,
-  Switch,
-  Text,
-} from "@chakra-ui/react";
+import { HStack, Image, Input } from "@chakra-ui/react";
 import logo from "../assets/logo.webp";
-import { useState } from "react";
 import { ThemeModeSwitch } from "./ThemeModeSwitch";
+import { SearchInput } from "./SearchInput";
 
-export const NavBar = () => {
+interface Props {
+  onInputKeyword: (keyword: string) => void;
+}
+export const NavBar = ({ onInputKeyword }: Props) => {
   return (
-    <HStack justifyContent={"space-between"}>
+    <HStack>
       <Image src={logo} boxSize="60px"></Image>
+      <SearchInput onInputKeyword={onInputKeyword}></SearchInput>
       <ThemeModeSwitch />
     </HStack>
   );
