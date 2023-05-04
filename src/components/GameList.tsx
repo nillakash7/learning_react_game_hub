@@ -22,28 +22,25 @@ interface Props {
 export const GameList = ({ searchBy }: Props) => {
   const { data, error, isLoading } = useGames(searchBy);
   const shadowGames = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+  if (error)
+    return <CustomAlert alertType="error" alertMessage={error}></CustomAlert>;
   return (
-    <Box>
-      {error && (
-        <CustomAlert alertType="error" alertMessage={error}></CustomAlert>
-      )}
-      <SimpleGrid
-        columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
-        marginY={2}
-        spacing={6}
-      >
-        {isLoading &&
-          shadowGames.map((sgItem) => (
-            <GameCardContainer key={sgItem}>
-              <GameCardShadow></GameCardShadow>
-            </GameCardContainer>
-          ))}
-        {data.map((gItem) => (
-          <GameCardContainer key={gItem.id}>
-            <GameCard game={gItem}></GameCard>
+    <SimpleGrid
+      columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
+      marginY={2}
+      spacing={6}
+    >
+      {isLoading &&
+        shadowGames.map((sgItem) => (
+          <GameCardContainer key={sgItem}>
+            <GameCardShadow></GameCardShadow>
           </GameCardContainer>
         ))}
-      </SimpleGrid>
-    </Box>
+      {data.map((gItem) => (
+        <GameCardContainer key={gItem.id}>
+          <GameCard game={gItem}></GameCard>
+        </GameCardContainer>
+      ))}
+    </SimpleGrid>
   );
 };
